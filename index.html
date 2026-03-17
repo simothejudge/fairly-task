@@ -1,29 +1,113 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Text Annotation Task</title>
+  <title>Fairly - Task</title>
+
   <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f7fb;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      max-height: 150px;
+    }
+
+    .text-box {
+      line-height: 1.7;
+      font-size: 15px;
+      margin-bottom: 20px;
+
+      font-family: "Courier New", monospace;
+      background-color: #fafafa;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
     .highlight {
       background-color: yellow;
+      cursor: pointer;
     }
+
+    .instructions {
+      background-color: #eef3ff;
+      border-left: 4px solid #4CAF50;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    input, button {
+      padding: 10px;
+      margin-top: 10px;
+      width: 100%;
+      font-size: 14px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
   </style>
 </head>
 
 <body>
 
-<h2>Riscrivi il testo selezionando le parti da modificare</h2>
+<div class="container">
 
-<div id="text">
-  Dopo aver perso il lavoro, addio anche agli ultimi incentivi: a Omegna si fermano le misure di mobilità per 25 ex operai della Bialetti, a cinque anni dalla chiusura della fabbrica. Abbiamo intervistato Mario Rossi, Francesca Bianchi e Giovanni Verdi riguardo la situazione.
+  <div class="logo">
+   
+    <img src="FAIrly-logo.png" alt="Fairly Logo">
+  </div>
 
-  La fabbrica se ne è andata e loro sono rimasti con poche prospettive. A cinque anni da quando Bialetti ha lasciato Omegna restano ancora venticinque lavoratori per i quali non ci sono più ammortizzatori sociali. 
+  <div class="instructions">
+    <strong>Istruzioni:</strong><br>
+    <p>Evidenzia le parti di testo che vuoi modificare e inserisci un'alternativa più inclusiva.</p>
+    <p>Per ogni modifica, puoi secgliere di cambiare una sola parola o riformulare l’intera frase.</p>
+  </div>
 
-  Gli altri, una novantina che un tempo lavoravano nella storica azienda di caffettiere, sono stati più fortunati: qualcuno è andato in pensione, altri hanno trovato un nuovo lavoro.
-  
-  Ora questi lavoratori chiedono un aiuto al sindaco Aida Mellano e alle altre istituzioni locali per riuscire a trovare nuove opportunità.
+  <p><strong>Testo da modificare:</strong></p>
+  <div id="text" class="text-box">
+    <p>Dopo aver perso il lavoro, addio anche agli ultimi incentivi: a Omegna si fermano le misure di mobilità per 25 ex operai della Bialetti, a cinque anni dalla chiusura della fabbrica. Abbiamo intervistato Mario Rossi, Francesca Bianchi e Giovanni Verdi riguardo la situazione.</p>
+
+    <p>La fabbrica se ne è andata e loro sono rimasti con poche prospettive. A cinque anni da quando Bialetti ha lasciato Omegna restano ancora venticinque lavoratori per i quali non ci sono più ammortizzatori sociali.</p>
+
+    <p>Gli altri, una novantina di operai che un tempo lavoravano nella storica azienda di caffettiere, sono stati più fortunati: qualcuno è andato in pensione, altri hanno trovato un nuovo lavoro.</p>
+    
+    <p>Ora questi lavoratori chiedono un aiuto al sindaco Aida Mellano e alle altre istituzioni locali per riuscire a trovare nuove opportunità.</p>
+    
+  </div>
+
+  <input type="email" id="email" placeholder="Inserisci la tua email">
+
+  <button onclick="submitData()">Invia</button>
+
 </div>
-
-<button onclick="submitData()">Invia</button>
 
 <script src="script.js"></script>
 

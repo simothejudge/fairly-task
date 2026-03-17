@@ -1,20 +1,8 @@
 let annotations = [];
 const SUPABASE_URL = "https://aobseuwycuwdodkhvgkp.supabase.co";
 const SUPABASE_KEY = "sb_publishable_83EcrQ4Bai8W6owROHfrPQ_5bj49aMs";
+const session_id = crypto.randomUUID();
 
-document.getElementById("text").addEventListener("mouseup", function () {
-  let selection = window.getSelection();
-  let selectedText = selection.toString();
-
-  if (selectedText.length > 0) {
-    let replacement = prompt("Come lo riscriveresti?");
-
-    if (replacement) {
-      saveAnnotation(selectedText, replacement);
-      highlightSelection();
-    }
-  }
-});
 
 function saveAnnotation(original, corrected) {
   annotations.push({
@@ -25,28 +13,73 @@ function saveAnnotation(original, corrected) {
   console.log(annotations);
 }
 
-function highlightSelection() {
+document.getElementById("text").addEventListener("mouseup", function () {
   let selection = window.getSelection();
-  let range = selection.getRangeAt(0);
+  let selectedText = selection.toString();
+  
+  if (selection.rangeCount === 0) return;
 
-  let span = document.createElement("span");
-  span.className = "highlight";
+  if (selectedText.length > 0 && selection.rangeCount > 0) {
+    let replacement = prompt("Come lo riscriveresti?");
 
-  range.surroundContents(span);
+    if (replacement) {
+      let range = selection.getRangeAt(0);
 
-  selection.removeAllRanges();
-}
+      let span = document.createElement("span");
+      span.className = "highlight";
+      span.textContent = replacement;
 
+      range.deleteContents();
+      range.insertNode(span);
+
+      annotations.push({
+        original: selectedText,
+        corrected: replacement
+      });
+
+      selection.removeAllRanges();
+    }
+  }
+});
 async function submitData() {
-  await fetch(`${SUPABASE_URL}/rest/v1/annotations`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "apikey": SUPABASE_KEY,
-      "Authorization": `Bearer ${SUPABASE_KEY}`
-    },
-    body: JSON.stringify(annotations)
-  });
 
-  alert("Grazie!");
+  const email = document.getElementById("email").value;
+
+  // Controllo email
+  if (!email) {
+    alert("Inserisci la tua email prima di inviare.");
+    return;
+  }
+
+  try {
+
+    for (let ann of annotations) {
+
+      await fetch(`${SUPABASE_URL}/rest/v1/annotations`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": SUPABASE_KEY,
+          "Authorization": `Bearer ${SUPABASE_KEY}`
+        },
+        body: JSON.stringify({
+          original: ann.original,
+          corrected: ann.corrected,
+          email: email,
+          session_id: session_id,
+          timestamp: new Date().toISOString()
+        })
+      });
+
+    }
+
+    // Messaggio + redirect
+    alert("Grazie! Prosegui l'attività con un questionario di pochissimi minuti.");
+
+    window.location.href = "https://TUO-LINK";
+
+  } catch (error) {
+    console.error("Errore nel salvataggio:", error);
+    alert("Si è verificato un errore. Riprova.");
+  }
 }
