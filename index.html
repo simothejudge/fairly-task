@@ -30,16 +30,15 @@
 
     .text-box {
       line-height: 1.7;
-      font-size: 15px;
+      font-size: 14px;
       margin-bottom: 20px;
-
-      font-family: "Courier New", monospace;
+    
+      font-family: Arial, sans-serif;
       background-color: #fafafa;
       padding: 15px;
       border-radius: 8px;
       border: 1px solid #ddd;
     }
-
     .highlight {
       background-color: yellow;
       cursor: pointer;
@@ -52,6 +51,19 @@
       margin-bottom: 20px;
       border-radius: 6px;
       font-size: 15px;
+    }
+    
+    .title h1 {
+      margin: 10px 0 5px 0;
+      text-align: center;
+      font-size: 28px;
+    }
+    
+    .title p {
+      margin: 0;
+      text-align: center;
+      color: #555;
+      font-size: 14px;
     }
 
     input, button {
@@ -72,6 +84,7 @@
     button:hover {
       background-color: #45a049;
     }
+  
 
   </style>
 </head>
@@ -80,16 +93,20 @@
 
 <div class="container">
 
-  <div class="logo">
-   
-    <img src="FAIrly-logo.png" alt="Fairly Logo">
+  <div class="title">
+    <h1>Fairly</h1>
+    <p>Creatività, AI e tecnologie del linguaggio per realizzare scrittura inclusiva</p>
   </div>
 
-  <div class="instructions">
-    <strong>Istruzioni:</strong><br>
-    <p>Evidenzia le parti di testo che vuoi modificare e inserisci un'alternativa più inclusiva.</p>
-    <p>Per ogni modifica, puoi secgliere di cambiare una sola parola o riformulare l’intera frase.</p>
-  </div>
+    <div class="instructions">
+      <strong>Istruzioni:</strong>
+        <p>
+          Evidenzia nel testo le <strong>parole</strong> o le <strong>espressioni</strong> che ti sembrano poco attente rispetto alla varietà di genere e sostituiscile con alternative più egualitarie.
+        </p>
+        <p>
+          Per ogni cambiamento, puoi modificare una sola parola oppure tutta la frase.
+        </p>
+    </div>
 
   <p><strong>Testo da modificare:</strong></p>
   <div id="text" class="text-box">
