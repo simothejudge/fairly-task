@@ -74,8 +74,10 @@ async function submitData() {
     }
 
     // Messaggio + redirect
-    alert("Grazie! Prosegui l'attività con un questionario di pochissimi minuti.");
-
+    alert(
+      "Grazie del tuo contributo!\n\nSiamo circa a metà.\nOra procediamo alla compilazione del questionario della durata di pochi minuti."
+    );
+    
     window.location.href = "https://TUO-LINK";
 
   } catch (error) {
